@@ -12,6 +12,9 @@ const (
 	playersURL = "https://api.opendota.com/api/proPlayers"
 	teamsURL   = "https://api.opendota.com/api/teams"
 	leaguesURL = "https://api.opendota.com/api/leagues"
+	playerTag  = "игрок"
+	teamTag    = "команда"
+	leagueTag  = "лига"
 )
 
 func getJSON(url string, target interface{}) error {
@@ -43,17 +46,17 @@ func main() {
 	getJSON(leaguesURL, &leagues)
 
 	for _, player := range players {
-		dictEl := fmt.Sprintf("%s,%s\n", player.Personaname, "игрок")
+		dictEl := fmt.Sprintf("%s,%s\n", player.Personaname, playerTag)
 		dict += dictEl
 	}
 
 	for _, team := range teams {
-		dictEl := fmt.Sprintf("%s,%s\n", team.Name, "команда")
+		dictEl := fmt.Sprintf("%s,%s\n", team.Name, teamTag)
 		dict += dictEl
 	}
 
 	for _, league := range leagues {
-		dictEl := fmt.Sprintf("%s,%s\n", league.Name, "лига")
+		dictEl := fmt.Sprintf("%s,%s\n", league.Name, leagueTag)
 		dict += dictEl
 	}
 
@@ -67,21 +70,21 @@ func main() {
 
 	for _, player := range playersAliases {
 		for _, playerAlias := range player.Aliases {
-			dictEl := fmt.Sprintf("%s,%s\n", playerAlias, "игрок")
+			dictEl := fmt.Sprintf("%s,%s\n", playerAlias, playerTag)
 			dict += dictEl
 		}
 	}
 
 	for _, team := range teamsAliases {
 		for _, teamAlias := range team.Aliases {
-			dictEl := fmt.Sprintf("%s,%s\n", teamAlias, "команда")
+			dictEl := fmt.Sprintf("%s,%s\n", teamAlias, teamTag)
 			dict += dictEl
 		}
 	}
 
 	for _, league := range leaguesAliases {
 		for _, leagueAlias := range league.Aliases {
-			dictEl := fmt.Sprintf("%s,%s\n", leagueAlias, "лига")
+			dictEl := fmt.Sprintf("%s,%s\n", leagueAlias, leagueTag)
 			dict += dictEl
 		}
 	}
